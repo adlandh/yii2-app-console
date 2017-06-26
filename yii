@@ -8,8 +8,22 @@
  * @license http://www.yiiframework.com/license/
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
+set_time_limit(0);
+@ini_set("memory_limit","1G");
+
+if (file_exists(__DIR__."/dev"))
+{
+    define('APPLICATION_ENV', 'dev');
+}
+else
+{
+    define('APPLICATION_ENV', 'prod');
+}
+
+$env = require(__DIR__ . '/config/env.php');
+
+defined('YII_DEBUG') or define('YII_DEBUG', $env["debug"]);
+defined('YII_ENV') or define('YII_ENV', APPLICATION_ENV);
 
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');

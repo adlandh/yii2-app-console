@@ -13,10 +13,13 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'log' => [
+            'flushInterval' => 1,
             'targets' => [
                 [
+                    'exportInterval' => 1,
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logVars' => [],
                 ],
             ],
         ],
